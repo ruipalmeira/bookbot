@@ -9,9 +9,17 @@ def count_words(file):
         book = f.read()
         words = book.split()
         wordcount += len(words)
-    return print(f"Found {wordcount} total words")
+    return (wordcount)
 
 def count_char(file):
     with open(file) as f:
         words = f.read().lower()
-    return print(dict(Counter(words)))
+    return dict(Counter(words))
+
+def print_sort_dict(file):
+    with open(file) as f:
+        buffer = f.read().lower()
+    #keep only alphabetic and accented characters
+    filtered = [c for c in buffer if c.isalpha or c in ['æ', 'â', 'ê', 'ë', 'ô', 'ã', 'õ', 'ñ']]    
+    dictBuffer = dict(sorted(Counter(filtered).items(), key=lambda item:item[1], reverse=True))
+    return(dictBuffer)
